@@ -14,15 +14,20 @@ public class ProductDTO implements Parcelable{
     private Date dateCreationProduct;
     private String photo;
     private Integer categorieProduct;
+    private String descriptionProduct;
+    private Double prixProduct;
 
     public ProductDTO() {}
 
-    public ProductDTO(Integer idProduct, String nomProduct, Date dateCreationProduct, String photo, Integer categorieProduct) {
+    public ProductDTO(Integer idProduct, String nomProduct, Date dateCreationProduct,
+                      String photo, Integer categorieProduct, String descriptionProduct, Double prixProduct) {
         this.idProduct = idProduct;
         this.nomProduct = nomProduct;
         this.dateCreationProduct = dateCreationProduct;
         this.photo = photo;
         this.categorieProduct = categorieProduct;
+        this.descriptionProduct = descriptionProduct;
+        this.prixProduct = prixProduct;
     }
 
     public Integer getIdProduct() {
@@ -56,9 +61,25 @@ public class ProductDTO implements Parcelable{
         this.categorieProduct = categorieProduct;
     }
 
+    public String getDescriptionProduct() {
+        return descriptionProduct;
+    }
+
+    public void setDescriptionProduct(String descriptionProduct) {
+        this.descriptionProduct = descriptionProduct;
+    }
+
+    public Double getPrixProduct() {
+        return prixProduct;
+    }
+
+    public void setPrixProduct(Double prixProduct) {
+        this.prixProduct = prixProduct;
+    }
+
     //parcel part
     public ProductDTO(Parcel in){
-        String[] data= new String[5];
+        String[] data= new String[7];
 
         SimpleDateFormat shortenedDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date date = null;
@@ -74,6 +95,12 @@ public class ProductDTO implements Parcelable{
         this.dateCreationProduct = date;
         this.photo = data[3];
         this.categorieProduct = Integer.parseInt(data[4]);
+        this.descriptionProduct = data[5];
+        if(data[6]!=null){
+        this.prixProduct = Double.parseDouble(data[6]);}
+        else {
+            this.prixProduct = 0.00;
+        }
     }
 
     @Override
@@ -91,21 +118,21 @@ public class ProductDTO implements Parcelable{
                         this.nomProduct,
                         dateCreationProductStr,
                         this.photo,
-                        String.valueOf(this.categorieProduct)
+                        String.valueOf(this.categorieProduct),
+                        this.descriptionProduct,
+                        String.valueOf(this.prixProduct)
                 });
     }
 
-    public static final Parcelable.Creator<ProductDTO> CREATOR= new Parcelable.Creator<ProductDTO>() {
+    public static final Parcelable.Creator<ProductDTO> CREATOR = new Parcelable.Creator<ProductDTO>() {
 
         @Override
         public ProductDTO createFromParcel(Parcel source) {
-// TODO Auto-generated method stub
             return new ProductDTO(source);  //using parcelable constructor
         }
 
         @Override
         public ProductDTO[] newArray(int size) {
-// TODO Auto-generated method stub
             return new ProductDTO[size];
         }
     };

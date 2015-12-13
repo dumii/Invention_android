@@ -3,8 +3,12 @@ package fr.afcepf.al25.invention_v1;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -17,6 +21,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -25,6 +30,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -43,7 +49,6 @@ public class MainActivityFragment extends Fragment {
 
     private final String LOG_TAG = MainActivityFragment.class.getSimpleName();
 
-//    ArrayAdapter<ProductDTO> adapter;
     ProductsAdapter adapter;
     public MainActivityFragment() {
     }
@@ -73,8 +78,6 @@ public class MainActivityFragment extends Fragment {
 
         FetchProduitTask produitTask = new FetchProduitTask();
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        //TODO
-//        String location = prefs.getString(getString(R.string.pref_location_key), getString(R.string.pref_location_default));
         produitTask.execute(0);
     }
 
@@ -139,7 +142,12 @@ public class MainActivityFragment extends Fragment {
             }
             TextView nomProduit = (TextView) convertView.findViewById(R.id.liste_item_produit_textview);
             nomProduit.setText(produit.getNomProduct());
-
+            ImageView imageProduit = (ImageView) convertView.findViewById(R.id.liste_item_produit_imageview);
+            String image = produit.getPhoto().replace("images/","");
+            image = image.replace(".jpg","");
+            image = image.replace(".png","");
+            int resId = getResources().getIdentifier(image, "drawable", getContext().getPackageName());
+            imageProduit.setImageResource(resId);
             return convertView;
         }
 
@@ -166,7 +174,8 @@ public class MainActivityFragment extends Fragment {
                 // http://openweathermap.org/API#forecast
                 // URL url = new URL("http://api.openweathermap.org/data/2.5/forecast/daily?q=94043&mode=json&units=metric&cnt=7&APPID=888132ed4faac863a5b92b0f95ec0c22");
 
-                final String FORECAST_BASE_URL = "http://192.168.100.33:8081/Inventor-Web2/faces/services/rest/products?";
+//                final String FORECAST_BASE_URL = "http://192.168.100.33:8081/Inventor-Web2/faces/services/rest/products?";
+                final String FORECAST_BASE_URL = "http://192.168.0.19:9090/Inventor-Web2/faces/services/rest/products?";
                 final String QUERY_PARAM = "categorie";
 
                 Uri builtUri = Uri.parse(FORECAST_BASE_URL).buildUpon()
@@ -274,6 +283,17 @@ public class MainActivityFragment extends Fragment {
                 product.setCategorieProduct(jsonObj.getInt("categorieProduct"));
                 product.setDateCreationProduct(getReadableDateString(jsonObj.getString("dateCreationProduct")));
                 product.setPhoto(jsonObj.getString("photo"));
+                try {
+                    product.setDescriptionProduct(jsonObj.getString("description"));
+                } catch (JSONException je){
+                    product.setDescriptionProduct("");
+                }
+                try {
+                    product.setPrixProduct(jsonObj.getDouble("prix"));
+                } catch (JSONException je){
+                    product.setPrixProduct(0.00);
+                }
+
                 listeProduits.add(product);
             }
 
