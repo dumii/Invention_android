@@ -174,8 +174,9 @@ public class MainActivityFragment extends Fragment {
                 // http://openweathermap.org/API#forecast
                 // URL url = new URL("http://api.openweathermap.org/data/2.5/forecast/daily?q=94043&mode=json&units=metric&cnt=7&APPID=888132ed4faac863a5b92b0f95ec0c22");
 
-//                final String FORECAST_BASE_URL = "http://192.168.100.33:8081/Inventor-Web2/faces/services/rest/products?";
-                final String FORECAST_BASE_URL = "http://192.168.0.19:9090/Inventor-Web2/faces/services/rest/products?";
+//                final String FORECAST_BASE_URL = "http://192.168.100.34:9090/Inventor-Web2/faces/services/rest/products?"; //afc ad
+                final String FORECAST_BASE_URL = "http://192.168.100.33:8081/Inventor-Web2/faces/services/rest/products?"; //afc kevin
+//                final String FORECAST_BASE_URL = "http://192.168.0.19:9090/Inventor-Web2/faces/services/rest/products?"; //home
                 final String QUERY_PARAM = "categorie";
 
                 Uri builtUri = Uri.parse(FORECAST_BASE_URL).buildUpon()
@@ -287,11 +288,13 @@ public class MainActivityFragment extends Fragment {
                     product.setDescriptionProduct(jsonObj.getString("description"));
                 } catch (JSONException je){
                     product.setDescriptionProduct("");
+                    je.printStackTrace();
                 }
                 try {
                     product.setPrixProduct(jsonObj.getDouble("prix"));
                 } catch (JSONException je){
                     product.setPrixProduct(0.00);
+                    je.printStackTrace();
                 }
 
                 listeProduits.add(product);
