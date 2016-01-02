@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical|center_horizontal"
+    android:baselineAligned="false"
+    android:clickable="false">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical|center_horizontal"
+        android:baselineAligned="false"
+        android:background="@drawable/border">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Identifiant : "
+        android:id="@+id/idTextView"
+        android:layout_gravity="center_horizontal"
+        android:padding="15dp" />
+
+    <EditText
+        android:layout_width="229dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/idText"
+        android:text="Votre identifiant"
+        android:textStyle="italic"
+        android:textAlignment="center"
+        android:background="@drawable/border_text"
+        android:padding="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Mot de passe :"
+        android:id="@+id/mdpTextView"
+        android:paddingTop="15dp"
+        android:padding="15dp" />
+
+    <EditText
+        android:layout_width="244dp"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/mdpText"
+        android:background="@drawable/border_text"
+        android:padding="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Se connecter"
+        android:id="@+id/connexionButton"
+        android:layout_margin="10dp"
+        android:background="@drawable/border_button"
+        android:padding="10dp"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_marginTop="25dp"
+        android:onClick="submitConnect" />
+    </LinearLayout>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/messageText"
+        android:textColor="@android:color/holo_red_dark"
+        android:layout_gravity="center_horizontal" />
+
+</LinearLayout>
