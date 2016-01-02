@@ -93,20 +93,7 @@ public class MainActivityFragment extends Fragment {
 
         ArrayList<ProductDTO> arrayOfProducts = new ArrayList<ProductDTO>();
         adapter = new ProductsAdapter(getActivity(), arrayOfProducts);
-//        ListView listView = (ListView) findViewById(R.id.listViewProduits);
-//        listView.setAdapter(adapterProduit);
 
-//        adapter = new ArrayList<ProductDTO>(
-//                getActivity(),
-//                R.layout.list_items_produits,
-//                R.id.liste_item_produit_textview,
-//                new ArrayList<ProductDTO>());
-//        adapter
-//                = new ArrayAdapter<String>(
-//                getActivity(),//fragments parent activity
-//                R.layout.list_items_produits, //id of liste item layout
-//                R.id.liste_item_produit_textview, //id of textview to populate
-//                new ArrayList<String>()); //forecast data
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
         ListView listeView = (ListView) rootView.findViewById(R.id.listViewProduits);
         listeView.setAdapter(adapter);
@@ -175,15 +162,16 @@ public class MainActivityFragment extends Fragment {
                 // URL url = new URL("http://api.openweathermap.org/data/2.5/forecast/daily?q=94043&mode=json&units=metric&cnt=7&APPID=888132ed4faac863a5b92b0f95ec0c22");
 
 //                final String FORECAST_BASE_URL = "http://192.168.100.34:9090/Inventor-Web2/faces/services/rest/products?"; //afc ad
-                final String FORECAST_BASE_URL = "http://192.168.100.33:8081/Inventor-Web2/faces/services/rest/products?"; //afc kevin
+//                final String FORECAST_BASE_URL = "http://192.168.100.33:8081/Inventor-Web2/faces/services/rest/products?"; //afc kevin
 //                final String FORECAST_BASE_URL = "http://192.168.0.19:9090/Inventor-Web2/faces/services/rest/products?"; //home
+                final String FORECAST_BASE_URL = "http://192.168.1.76:9090/Inventor-Web2/faces/services/rest/products?"; //chez ana
                 final String QUERY_PARAM = "categorie";
 
                 Uri builtUri = Uri.parse(FORECAST_BASE_URL).buildUpon()
                         .appendQueryParameter(QUERY_PARAM, Integer.toString(categorieAll))
                         .build();
                 URL url = new URL(builtUri.toString());
-                Log.v(LOG_TAG, "Built URI " + builtUri.toString());
+                Log.i(LOG_TAG, "Built URI " + builtUri.toString());
 
                 // Create the request to OpenWeatherMap, and open the connection
                 urlConnection = (HttpURLConnection) url.openConnection();
@@ -213,7 +201,7 @@ public class MainActivityFragment extends Fragment {
                 }
                 produitsJsonStr = buffer.toString();
 
-                Log.v(LOG_TAG, "Produit JSON String " + produitsJsonStr);
+                Log.i(LOG_TAG, "Produit JSON String " + produitsJsonStr);
 
             } catch (IOException e) {
                 Log.e("PlaceholderFragment", "Error ", e);
@@ -244,7 +232,7 @@ public class MainActivityFragment extends Fragment {
 
         //@Override
         protected void onPostExecute(List<ProductDTO> result) {
-            Log.v(LOG_TAG, "Passage par le onPostExecute");
+            Log.i(LOG_TAG, "Passage par le onPostExecute");
             if(result != null){
                 adapter.clear();
                 for(ProductDTO produit : result){

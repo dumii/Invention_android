@@ -55,6 +55,11 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
 
+        if(id == R.id.action_connect){
+            startActivity(new Intent(this,ConnexionActivity.class));
+            return true;
+        }
+
         return super.onOptionsItemSelected(item);
     }
 }
