@@ -137,7 +137,6 @@ public class MainActivityFragment extends Fragment {
             imageProduit.setImageResource(resId);
             return convertView;
         }
-
     }
 
     public class FetchProduitTask extends AsyncTask <Integer, Void , List<ProductDTO>> {
@@ -151,6 +150,7 @@ public class MainActivityFragment extends Fragment {
             HttpURLConnection urlConnection = null;
             BufferedReader reader = null;
 
+
             // Will contain the raw JSON response as a string.
             String produitsJsonStr = null;
 
@@ -161,10 +161,10 @@ public class MainActivityFragment extends Fragment {
                 // http://openweathermap.org/API#forecast
                 // URL url = new URL("http://api.openweathermap.org/data/2.5/forecast/daily?q=94043&mode=json&units=metric&cnt=7&APPID=888132ed4faac863a5b92b0f95ec0c22");
 
-//                final String FORECAST_BASE_URL = "http://192.168.100.34:9090/Inventor-Web2/faces/services/rest/products?"; //afc ad
+                final String FORECAST_BASE_URL = "http://192.168.100.200:9090/Inventor-Web2/faces/services/rest/products?"; //afc ad
 //                final String FORECAST_BASE_URL = "http://192.168.100.33:8081/Inventor-Web2/faces/services/rest/products?"; //afc kevin
-//                final String FORECAST_BASE_URL = "http://192.168.0.19:9090/Inventor-Web2/faces/services/rest/products?"; //home
-                final String FORECAST_BASE_URL = "http://192.168.1.76:9090/Inventor-Web2/faces/services/rest/products?"; //chez ana
+//                final String FORECAST_BASE_URL = "http://192.168.0.22:9090/Inventor-Web2/faces/services/rest/products?"; //home
+//                final String FORECAST_BASE_URL = "http://192.168.1.76:9090/Inventor-Web2/faces/services/rest/products?"; //chez ana
                 final String QUERY_PARAM = "categorie";
 
                 Uri builtUri = Uri.parse(FORECAST_BASE_URL).buildUpon()
@@ -203,6 +203,7 @@ public class MainActivityFragment extends Fragment {
 
                 Log.i(LOG_TAG, "Produit JSON String " + produitsJsonStr);
 
+
             } catch (IOException e) {
                 Log.e("PlaceholderFragment", "Error ", e);
                 // If the code didn't successfully get the weather data, there's no point in attemping
@@ -221,7 +222,6 @@ public class MainActivityFragment extends Fragment {
                 }
             }
             try{
-                //TODO
                 return getProduitDataFromJson(produitsJsonStr);
             } catch (JSONException je){
                 Log.e(LOG_TAG, je.getMessage(), je);

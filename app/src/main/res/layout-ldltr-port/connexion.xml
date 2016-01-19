@@ -6,8 +6,13 @@
     android:gravity="center_vertical|center_horizontal"
     android:baselineAligned="false"
     android:clickable="false">
-
-    <LinearLayout
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical|center_horizontal"
+            android:baselineAligned="false">
+        <LinearLayout
         android:orientation="vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -28,7 +33,7 @@
         android:layout_width="229dp"
         android:layout_height="wrap_content"
         android:id="@+id/idText"
-        android:text="Votre identifiant"
+        android:text=""
         android:textStyle="italic"
         android:textAlignment="center"
         android:background="@drawable/border_text"
@@ -51,6 +56,7 @@
         android:inputType="textPassword"
         android:ems="10"
         android:id="@+id/mdpText"
+        android:textAlignment="center"
         android:background="@drawable/border_text"
         android:padding="5dp"
         android:layout_marginLeft="10dp"
@@ -73,7 +79,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/messageText"
-        android:textColor="@android:color/holo_red_dark"
+        android:textColor="@android:color/black"
         android:layout_gravity="center_horizontal" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/messageText2"
+        android:textColor="@android:color/black"
+        android:layout_gravity="center_horizontal" />
+        </LinearLayout>
 
 </LinearLayout>

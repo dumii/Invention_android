@@ -6,6 +6,7 @@
 
     <string name="title_activity_detail">Liste produits</string>
     <string name="title_connexion">Connexion</string>
+    <string name="title_commandes">Mes commandes</string>
 
     <!-- Strings related to Settings -->
 
