@@ -146,7 +146,7 @@ public class CommandesActivity extends AppCompatActivity {
             String cmdsJsonStr = null;
 
             try {
-                final String CONNECT_BASE_URL = "http://192.168.100.200:9090/Inventor-Web2/faces/services/rest/commandes?"; //afc ad
+                final String CONNECT_BASE_URL = "http://192.168.100.200:9090/Inventor-Web2/services/rest/commandes?"; //afc ad
 //                final String CONNECT_BASE_URL = "http://192.168.0.22:9090/Inventor-Web2/faces/services/rest/users?"; //home
                 final String QUERY_PARAM_1 = "id";
 //                final String QUERY_PARAM_2 = "password";

@@ -161,7 +161,7 @@ public class MainActivityFragment extends Fragment {
                 // http://openweathermap.org/API#forecast
                 // URL url = new URL("http://api.openweathermap.org/data/2.5/forecast/daily?q=94043&mode=json&units=metric&cnt=7&APPID=888132ed4faac863a5b92b0f95ec0c22");
 
-                final String FORECAST_BASE_URL = "http://192.168.100.200:9090/Inventor-Web2/faces/services/rest/products?"; //afc ad
+                final String FORECAST_BASE_URL = "http://192.168.100.200:9090/Inventor-Web2/services/rest/products?"; //afc ad
 //                final String FORECAST_BASE_URL = "http://192.168.100.33:8081/Inventor-Web2/faces/services/rest/products?"; //afc kevin
 //                final String FORECAST_BASE_URL = "http://192.168.0.22:9090/Inventor-Web2/faces/services/rest/products?"; //home
 //                final String FORECAST_BASE_URL = "http://192.168.1.76:9090/Inventor-Web2/faces/services/rest/products?"; //chez ana
